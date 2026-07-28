@@ -1,3 +1,7 @@
+---
+sidebar_label: Content and Systems
+---
+
 # Sun Trap — Content and Systems Detail
 
 **Document status:** Draft

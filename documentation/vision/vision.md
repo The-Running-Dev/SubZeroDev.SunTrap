@@ -1,3 +1,7 @@
+---
+sidebar_label: Vision
+---
+
 # Sun Trap — Vision
 
 **Document status:** Draft
@@ -57,7 +61,7 @@ first campaign family, not the only possible one.
 
 **What this game does not get to decide.** Determinism rules, the action list, state
 boundaries, reason codes, event names and the meaning of win and loss are fixed by the kind
-contract. See the table in [`README.md`](README.md).
+contract. See the [repository README](https://github.com/The-Running-Dev/SubZeroDev.SunTrap/blob/main/README.md).
 
 ---
 

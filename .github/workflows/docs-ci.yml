@@ -1,0 +1,45 @@
+name: Docs CI
+
+"on":
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  documentation:
+    name: Documentation links and terminology
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Validate Markdown links, terminology, and generated files
+        run: ./build/Test-Documentation.ps1
+
+  verify:
+    name: Verify Documentation Build
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/the-running-dev/docs-template:latest
+      credentials:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.REGISTRY_TOKEN || github.token }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Build documentation
+        run: /template/scripts/docs-build.ps1 -SourceDocs ./documentation -OutputPath artifacts/docs
+      - name: Archive Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: artifacts/docs

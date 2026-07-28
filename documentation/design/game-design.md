@@ -1,10 +1,14 @@
+---
+sidebar_label: Game Design
+---
+
 # Sun Trap — Game Design
 
 **Document status:** Draft
 
 > **Scope**
 > The gameplay. What the player does, what the world does back, and how the two interact.
-> Field-level state shapes are in [`06-content-and-systems.md`](06-content-and-systems.md);
+> Field-level state shapes are in [Content and Systems](content-and-systems.md);
 > anything the engine fixes is in the
 > [World-Graph Kind](https://game-engine.subzerodev.com/docs/engine/world-graph-kind)
 > contract, not here. Where this document states a rule rather than a design intent — reason

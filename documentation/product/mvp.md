@@ -1,3 +1,7 @@
+---
+sidebar_label: MVP
+---
+
 # Sun Trap — MVP
 
 **Document status:** Draft
