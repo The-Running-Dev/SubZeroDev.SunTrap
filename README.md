@@ -92,7 +92,7 @@ Read the game documents in this order:
 
 | Document | Holds |
 |---|---|
-| [Vision](https://the-running-dev.github.io/SubZeroDev.SunTrap/vision/vision/) | Why this game exists, what it should feel like, what is out of scope |
+| [Vision](https://the-running-dev.github.io/SubZeroDev.SunTrap/vision/) | Why this game exists, what it should feel like, what is out of scope |
 | [Game Design](https://the-running-dev.github.io/SubZeroDev.SunTrap/design/game-design/) | The gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
 | [Client Specification](https://the-running-dev.github.io/SubZeroDev.SunTrap/product/client-specification/) | The visual client — what it renders and what it may never do |
 | [MVP](https://the-running-dev.github.io/SubZeroDev.SunTrap/product/mvp/) | The smallest slice that proves the game, and its definition of done |

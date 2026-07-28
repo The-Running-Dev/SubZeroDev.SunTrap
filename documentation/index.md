@@ -98,7 +98,7 @@ Read the game documents in this order:
 
 | Document | Holds |
 |---|---|
-| [Vision](/vision/vision/) | Why this game exists, what it should feel like, what is out of scope |
+| [Vision](/vision/) | Why this game exists, what it should feel like, what is out of scope |
 | [Game Design](/design/game-design/) | The gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
 | [Client Specification](/product/client-specification/) | The visual client — what it renders and what it may never do |
 | [MVP](/product/mvp/) | The smallest slice that proves the game, and its definition of done |
