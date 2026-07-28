@@ -74,6 +74,10 @@ visible when each claim was checked against the engine's actual contract.
   `documentation/Dockerfile` use the same immutable container digest. To update it, inspect
   the desired template tag with `docker manifest inspect --verbose`, review the image change,
   and update all three references in one PR. Never replace a digest with a mutable tag.
+- **Use the custom-domain root.** The public site is `https://suntrap.subzerodev.com/`; the
+  Docusaurus configuration must use that URL with `baseUrl: '/'`. Do not restore the
+  repository-path base URL (`/SubZeroDev.SunTrap/`), or deployed assets and routes will point
+  to the wrong location.
 - **The first real build found two root-layout traps.** With `documentation/` as the site
   root, explicitly include only the authored categories in the Docusaurus configuration;
   otherwise

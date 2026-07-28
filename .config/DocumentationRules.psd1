@@ -20,7 +20,7 @@
             Arguments = @{
                 Title = 'Sun Trap'
                 Description = 'A satirical resort-management simulation'
-                SiteUrl = 'https://the-running-dev.github.io/SubZeroDev.SunTrap/'
+                SiteUrl = 'https://suntrap.subzerodev.com/'
                 RouteBasePath = '/'
             }
         }
