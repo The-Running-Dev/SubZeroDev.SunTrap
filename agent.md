@@ -82,8 +82,9 @@ visible when each claim was checked against the engine's actual contract.
   `/vision/`, not `/vision/vision/`.
 - **Verified on PR #1.** The local Markdown gate passed. Docker Desktop was unavailable, so
   GitHub Actions provided the production build: both the gate and the containerized
-  Docusaurus build/artifact path passed. Do not record a live deployment until the PR is
-  merged and `Docs Deploy` on `main` succeeds.
+  Docusaurus build/artifact path passed. After merge, `Docs Deploy` on `main` successfully
+  validated, built, uploaded, and published the site. The live site returned HTTPS 200 at
+  `https://suntrap.subzerodev.com/`.
 - **The Game Engine is outside this build.** Link readers to its published documentation;
   never create a relative link into the engine repository from a Sun Trap page.
 
