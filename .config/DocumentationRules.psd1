@@ -24,6 +24,18 @@
                 RouteBasePath = '/'
             }
         }
+        @{
+            Path = 'documentation/src/pages/index.md'
+            Source = 'README.md'
+            Generator = 'build/ConvertTo-DocumentationHomepage.ps1'
+            SourceParameter = 'ReadmePath'
+            Arguments = @{
+                Title = 'Sun Trap'
+                Description = 'A satirical resort-management simulation'
+                SiteUrl = 'https://suntrap.subzerodev.com/'
+                RouteBasePath = 'docs'
+            }
+        }
     )
 
     ExcludedFiles = @()

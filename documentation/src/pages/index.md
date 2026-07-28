@@ -1,7 +1,6 @@
 ---
 title: 'Sun Trap'
 description: 'A satirical resort-management simulation'
-sidebar_position: 1
 ---
 
 # SubZeroDev.SunTrap
@@ -112,3 +111,5 @@ This game is **inspired by the resort-management genre and reproduces none of it
 Identity, art, writing, scenarios, building names, maps, balance and UI are original. No
 proprietary names, assets, text or expression from any existing title appear in this
 repository, and none may be added.
+
+[View the documentation](/docs/)

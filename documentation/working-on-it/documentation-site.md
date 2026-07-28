@@ -10,9 +10,11 @@ used by the Game Engine.
 
 ## Authored and Generated Files
 
-All Markdown below `documentation/` is authored directly except `documentation/index.md`.
-That file is generated from the repository `README.md`; edit the README, regenerate the page,
-and commit both files. The documentation gate checks that they match.
+All Markdown below `documentation/` is authored directly except `documentation/index.md` and
+`documentation/src/pages/index.md`. Both are generated from the repository `README.md`; edit
+the README, regenerate the pages, and commit both files. The documentation gate checks that
+they match. The page copy is the public site root, while `documentation/index.md` is the first
+page of the `/docs/` section.
 
 The category directories are source organization, not an automatic information architecture.
 Add each new page to `documentation/sidebar.ts`, where the reading order and public

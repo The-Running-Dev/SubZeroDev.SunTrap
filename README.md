@@ -5,7 +5,7 @@ discover that people, alcohol, plumbing, weather, queues, staffing and basic geo
 formed an alliance against you.
 
 > **Status:** design documents only. Nothing here has been built, played or tested — the
-> design is unproven in every respect, and [the MVP](https://suntrap.subzerodev.com/product/mvp/)
+> design is unproven in every respect, and [the MVP](https://suntrap.subzerodev.com/docs/product/mvp/)
 > exists to find out which parts of it are wrong. All balance numbers are placeholders.
 
 ---
@@ -82,22 +82,23 @@ The wider engine contract, when a question is not kind-specific:
 ## Documentation
 
 The documentation site is published through GitHub Pages at
-[suntrap.subzerodev.com](https://suntrap.subzerodev.com/).
+[suntrap.subzerodev.com](https://suntrap.subzerodev.com/). This README is the site home;
+the documentation is published below [`/docs/`](https://suntrap.subzerodev.com/docs/).
 Its authored Markdown and Docusaurus project live in `documentation/`, with the site root
 generated from this README. See the
-[documentation-site guide](https://suntrap.subzerodev.com/working-on-it/documentation-site/)
+[documentation-site guide](https://suntrap.subzerodev.com/docs/working-on-it/documentation-site/)
 for local checks and deployment behaviour.
 
 Read the game documents in this order:
 
 | Document | Holds |
 |---|---|
-| [Vision](https://suntrap.subzerodev.com/vision/) | Why this game exists, what it should feel like, what is out of scope |
-| [Game Design](https://suntrap.subzerodev.com/design/game-design/) | The gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
-| [Client Specification](https://suntrap.subzerodev.com/product/client-specification/) | The visual client — what it renders and what it may never do |
-| [MVP](https://suntrap.subzerodev.com/product/mvp/) | The smallest slice that proves the game, and its definition of done |
-| [Roadmap, Risks, and Open Questions](https://suntrap.subzerodev.com/delivery/roadmap-risks-and-open-questions/) | Phases, risks, and what is still undecided |
-| [Content and Systems](https://suntrap.subzerodev.com/design/content-and-systems/) | Field-level detail: guest, building, staff, queue and construction shapes |
+| [Vision](https://suntrap.subzerodev.com/docs/vision/) | Why this game exists, what it should feel like, what is out of scope |
+| [Game Design](https://suntrap.subzerodev.com/docs/design/game-design/) | The gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
+| [Client Specification](https://suntrap.subzerodev.com/docs/product/client-specification/) | The visual client — what it renders and what it may never do |
+| [MVP](https://suntrap.subzerodev.com/docs/product/mvp/) | The smallest slice that proves the game, and its definition of done |
+| [Roadmap, Risks, and Open Questions](https://suntrap.subzerodev.com/docs/delivery/roadmap-risks-and-open-questions/) | Phases, risks, and what is still undecided |
+| [Content and Systems](https://suntrap.subzerodev.com/docs/design/content-and-systems/) | Field-level detail: guest, building, staff, queue and construction shapes |
 
 ## Originality
 

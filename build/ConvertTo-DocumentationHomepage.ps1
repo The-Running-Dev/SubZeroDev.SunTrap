@@ -44,7 +44,8 @@ $frontMatter = @('---', "title: $(ConvertTo-YamlScalar $Title)")
 if (-not [string]::IsNullOrWhiteSpace($Description)) {
     $frontMatter += "description: $(ConvertTo-YamlScalar $Description)"
 }
-if ($RouteBasePath.Trim('/') -eq '') {
+$isSiteRoot = $RouteBasePath.Trim('/') -ne ''
+if (-not $isSiteRoot) {
     $frontMatter += 'sidebar_position: 1'
 }
 $frontMatter += '---', ''
@@ -52,6 +53,11 @@ $frontMatter += '---', ''
 $body = (Get-Content -LiteralPath $ReadmePath -Raw) -replace "`r`n?", "`n"
 if (-not [string]::IsNullOrWhiteSpace($SiteUrl)) {
     $body = $body.Replace($SiteUrl, '/')
+}
+
+if ($isSiteRoot) {
+    $docsPath = '/' + $RouteBasePath.Trim('/') + '/'
+    $body = $body.TrimEnd() + "`n`n[View the documentation]($docsPath)`n"
 }
 
 $document = ($frontMatter -join "`n") + "`n" + $body.TrimEnd("`n") + "`n"

@@ -40,7 +40,11 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
       - name: Build documentation
-        run: /template/scripts/docs-build.ps1 -SourceDocs ./documentation -OutputPath artifacts/docs
+        run: |
+          Remove-Item -LiteralPath /template/src/pages -Recurse -Force -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Path /template/src/pages -Force | Out-Null
+          Copy-Item -LiteralPath ./documentation/src/pages/index.md -Destination /template/src/pages/index.md -Force
+          /template/scripts/docs-build.ps1 -SourceDocs ./documentation -OutputPath artifacts/docs
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:

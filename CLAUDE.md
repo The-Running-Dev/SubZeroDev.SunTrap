@@ -57,8 +57,9 @@ done.
 ## The Documentation
 
 Read in order. The authored documentation root is `documentation/`; it is also the
-Docusaurus site project. `documentation/index.md` is generated from `README.md` and must
-never be hand-edited.
+Docusaurus site project. `documentation/index.md` and `documentation/src/pages/index.md` are
+generated from `README.md` and must never be hand-edited. They render the first page of the
+`/docs/` section and the README-derived public home respectively.
 
 | File | Holds |
 |---|---|
@@ -79,8 +80,11 @@ order shown above, and rewrite every affected cross-link when a page moves or ch
 
 - `documentation/` is the Docusaurus project and Markdown root. Do not introduce a nested
   `docs/docs` content directory.
-- `documentation/index.md` is generated from `README.md` by
+- `documentation/index.md` and `documentation/src/pages/index.md` are generated from `README.md`
+  by
   `build/ConvertTo-DocumentationHomepage.ps1`; regenerate it after editing the README.
+- The README-derived home is served at `/`; the documentation sidebar is served below
+  `/docs/`. Keep redirects for retired root-level documentation routes.
 - Run `./build/Test-Documentation.ps1` and a production documentation build before opening a
   documentation PR. GitHub Actions repeats both checks, then deploys on `main`.
 - The documentation template is pinned by manifest digest in both workflows and in

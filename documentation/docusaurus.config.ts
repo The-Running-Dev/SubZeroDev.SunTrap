@@ -40,7 +40,7 @@ const config: Config = {
             '**/src/**',
           ],
           sidebarPath: './sidebar.ts',
-          routeBasePath: '/',
+          routeBasePath: 'docs',
         },
         blog: false,
       } satisfies Preset.Options,
