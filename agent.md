@@ -70,6 +70,16 @@ visible when each claim was checked against the engine's actual contract.
 - **Use two checks.** `build/Test-Documentation.ps1` validates repository Markdown and
   generated-file drift. The Docusaurus production build catches site routes and anchors.
   Both are required before merge; GitHub Pages deploys only after `main` receives the change.
+- **The first real build found two root-layout traps.** With `documentation/` as the site
+  root, explicitly include only the authored categories in the Docusaurus configuration;
+  otherwise
+  template Markdown under `node_modules` and `api` is compiled as content. Keep the README's
+  published links aligned with Docusaurus's emitted routes — the Vision document resolves at
+  `/vision/`, not `/vision/vision/`.
+- **Verified on PR #1.** The local Markdown gate passed. Docker Desktop was unavailable, so
+  GitHub Actions provided the production build: both the gate and the containerized
+  Docusaurus build/artifact path passed. Do not record a live deployment until the PR is
+  merged and `Docs Deploy` on `main` succeeds.
 - **The Game Engine is outside this build.** Link readers to its published documentation;
   never create a relative link into the engine repository from a Sun Trap page.
 
