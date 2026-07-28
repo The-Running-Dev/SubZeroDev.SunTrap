@@ -1,3 +1,7 @@
+---
+sidebar_label: Client Specification
+---
+
 # Sun Trap — Client Specification
 
 **Document status:** Draft

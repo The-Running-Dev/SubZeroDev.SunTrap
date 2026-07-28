@@ -9,7 +9,10 @@ node_modules/
 # Build, coverage, and tool output
 dist/
 build/
+!build/
+!build/*.ps1
 coverage/
+artifacts/
 .cache/
 .turbo/
 *.tsbuildinfo

@@ -1,3 +1,7 @@
+---
+sidebar_label: Roadmap and Risks
+---
+
 # Sun Trap — Roadmap, Risks, and Open Questions
 
 **Document status:** Draft

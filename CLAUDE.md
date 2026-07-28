@@ -54,27 +54,44 @@ Maps, scenarios, building and product definitions, guest archetypes, balance num
 narrative voice, the visual client, the balance harness, and this game's own definition of
 done.
 
-## The Docs
+## The Documentation
 
-Read in order. Numbering is positional.
+Read in order. The authored documentation root is `documentation/`; it is also the
+Docusaurus site project. `documentation/index.md` is generated from `README.md` and must
+never be hand-edited.
 
 | File | Holds |
 |---|---|
 | `README.md` | What this is, its relationship to the engine, the originality boundary |
-| `01-vision.md` | Why the game exists, what it should feel like, what is out of scope |
-| `02-game-design.md` | Gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
-| `03-client-specification.md` | The visual client — what it renders, and what it may never do |
-| `04-mvp.md` | The smallest slice that proves the game, and its definition of done |
-| `05-roadmap-risks-and-open-questions.md` | Phases, risks, what is undecided, and §5 — what the engine has already closed |
-| `06-content-and-systems.md` | Field-level shapes: guest, building, staff, queue, construction. `kindState` internals |
+| `documentation/vision/vision.md` | Why the game exists, what it should feel like, what is out of scope |
+| `documentation/design/game-design.md` | Gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
+| `documentation/product/client-specification.md` | The visual client — what it renders, and what it may never do |
+| `documentation/product/mvp.md` | The smallest slice that proves the game, and its definition of done |
+| `documentation/delivery/roadmap-risks-and-open-questions.md` | Phases, risks, what is undecided, and §5 — what the engine has already closed |
+| `documentation/design/content-and-systems.md` | Field-level shapes: guest, building, staff, queue, construction. `kindState` internals |
 
-**Numbering is positional.** Inserting a doc between existing ones means renumbering
-everything after it and rewriting every cross-link. Prefer appending; use a letter suffix
-(`03a`) if something genuinely must sit in the middle.
+**Reading order is explicit.** `documentation/sidebar.ts` groups the site into Orientation,
+Game Design, Product, Delivery, and Working on It; folders provide source organization only.
+Add each page to the appropriate category in that sidebar, preserve the conceptual reading
+order shown above, and rewrite every affected cross-link when a page moves or changes heading.
+
+### Documentation Site Rules
+
+- `documentation/` is the Docusaurus project and Markdown root. Do not introduce a nested
+  `docs/docs` content directory.
+- `documentation/index.md` is generated from `README.md` by
+  `build/ConvertTo-DocumentationHomepage.ps1`; regenerate it after editing the README.
+- Run `./build/Test-Documentation.ps1` and a production documentation build before opening a
+  documentation PR. GitHub Actions repeats both checks, then deploys on `main`.
+- The documentation template is pinned by manifest digest in both workflows and in
+  `documentation/Dockerfile`. Update all three together only after reviewing the desired
+  image's digest with `docker manifest inspect --verbose`.
+- Use relative Markdown links only for files inside this repository. The engine is external:
+  link its published documentation, never a relative traversal into its checkout.
 
 ### Where Drift Will Happen
 
-**`06-content-and-systems` ↔ the engine's kind contract.** `06` defines shapes that must obey
+**Content and Systems ↔ the engine's kind contract.** The Content and Systems document defines shapes that must obey
 rules stated in the engine. Its §1 restates those rules deliberately, as a checklist — when
 the engine's contract changes, §1 is the first thing to reconcile, and every shape below it
 the second.
@@ -96,8 +113,8 @@ reads like a rule.
 ## Working Conventions
 
 Findings and review items are presented **one at a time for sign-off**, not applied in bulk.
-When a suggestion is declined, record it in the affected document (or
-`05-roadmap-risks-and-open-questions.md` §4) as a known-and-retained issue rather than
+When a suggestion is declined, record it in the affected document (or the Roadmap, Risks,
+and Open Questions document's §4) as a known-and-retained issue rather than
 dropping it silently.
 
 **Verify, don't assert.** Check claims against the artefact — the engine's published spec,
