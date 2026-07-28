@@ -89,8 +89,8 @@ The wider engine contract, when a question is not kind-specific:
 The documentation site is published through GitHub Pages at
 [suntrap.subzerodev.com](/). This README is the site home;
 the documentation is published below [`/docs/`](/docs/).
-Its authored Markdown and Docusaurus project live in `documentation/`, with the site root
-generated from this README. See the
+The installer-managed Docusaurus project lives in `docs/`, and authored Markdown lives
+under `docs/docs/`. The site root is generated from this README. See the
 [documentation-site guide](/docs/working-on-it/documentation-site/)
 for local checks and deployment behaviour.
 

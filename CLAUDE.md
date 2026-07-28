@@ -56,40 +56,40 @@ done.
 
 ## The Documentation
 
-Read in order. The authored documentation root is `documentation/`; it is also the
-Docusaurus site project. `documentation/index.md` and `documentation/src/pages/index.md` are
-generated from `README.md` and must never be hand-edited. They render the first page of the
-`/docs/` section and the README-derived public home respectively.
+Read in order. The installer-managed Docusaurus project is `docs/`; authored Markdown lives
+under `docs/docs/`. `docs/src/pages/index.md` is generated from `README.md` and must never be
+hand-edited. It renders the README-derived public home at `/`. `docs/docs/index.md` is the
+separately authored landing page for the `/docs/` section.
 
 | File | Holds |
 |---|---|
 | `README.md` | What this is, its relationship to the engine, the originality boundary |
-| `documentation/vision/vision.md` | Why the game exists, what it should feel like, what is out of scope |
-| `documentation/design/game-design.md` | Gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
-| `documentation/product/client-specification.md` | The visual client — what it renders, and what it may never do |
-| `documentation/product/mvp.md` | The smallest slice that proves the game, and its definition of done |
-| `documentation/delivery/roadmap-risks-and-open-questions.md` | Phases, risks, what is undecided, and §5 — what the engine has already closed |
-| `documentation/design/content-and-systems.md` | Field-level shapes: guest, building, staff, queue, construction. `kindState` internals |
+| `docs/docs/vision/vision.md` | Why the game exists, what it should feel like, what is out of scope |
+| `docs/docs/design/game-design.md` | Gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
+| `docs/docs/product/client-specification.md` | The visual client — what it renders, and what it may never do |
+| `docs/docs/product/mvp.md` | The smallest slice that proves the game, and its definition of done |
+| `docs/docs/delivery/roadmap-risks-and-open-questions.md` | Phases, risks, what is undecided, and §5 — what the engine has already closed |
+| `docs/docs/design/content-and-systems.md` | Field-level shapes: guest, building, staff, queue, construction. `kindState` internals |
 
-**Reading order is explicit.** `documentation/sidebar.ts` groups the site into Orientation,
+**Reading order is explicit.** `docs/sidebar.ts` groups the site into Orientation,
 Game Design, Product, Delivery, and Working on It; folders provide source organization only.
 Add each page to the appropriate category in that sidebar, preserve the conceptual reading
 order shown above, and rewrite every affected cross-link when a page moves or changes heading.
 
 ### Documentation Site Rules
 
-- `documentation/` is the Docusaurus project and Markdown root. Do not introduce a nested
-  `docs/docs` content directory.
-- `documentation/index.md` and `documentation/src/pages/index.md` are generated from `README.md`
-  by
+- `docs/` is the installer-managed Docusaurus project; authored Markdown belongs under
+  `docs/docs/`. Do not recreate a parallel `documentation/` project.
+- `docs/src/pages/index.md` is generated from `README.md` by
   `build/ConvertTo-DocumentationHomepage.ps1`; regenerate it after editing the README.
+  `docs/docs/index.md` is the authored `/docs/` landing page.
 - The README-derived home is served at `/`; the documentation sidebar is served below
   `/docs/`. Keep redirects for retired root-level documentation routes.
 - Run `./build/Test-Documentation.ps1` and a production documentation build before opening a
   documentation PR. GitHub Actions repeats both checks, then deploys on `main`.
-- The documentation template is pinned by manifest digest in both workflows and in
-  `documentation/Dockerfile`. Update all three together only after reviewing the desired
-  image's digest with `docker manifest inspect --verbose`.
+- The documentation template is pinned by manifest digest in both workflows,
+  `docs/Dockerfile`, and `docs.ps1`. Update all four together only after reviewing the
+  desired image's digest with `docker manifest inspect --verbose`.
 - Use relative Markdown links only for files inside this repository. The engine is external:
   link its published documentation, never a relative traversal into its checkout.
 
