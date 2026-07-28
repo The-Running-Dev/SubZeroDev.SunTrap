@@ -24,6 +24,13 @@ const config: Config = {
       {
         docs: {
           path: '.',
+          exclude: [
+            '**/node_modules/**',
+            '**/.docusaurus/**',
+            '**/artifacts/**',
+            '**/build/**',
+            '**/src/**',
+          ],
           sidebarPath: './sidebar.ts',
           routeBasePath: '/',
         },
