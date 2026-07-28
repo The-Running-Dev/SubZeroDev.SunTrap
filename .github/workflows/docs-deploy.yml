@@ -28,13 +28,15 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     container:
-      image: ghcr.io/the-running-dev/docs-template:latest
+      image: ghcr.io/the-running-dev/docs-template@sha256:1ed8c8b001a0175204cbb8568d9cb018d1f6145fe40b8a209f8179c640d2ffa7
       credentials:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.REGISTRY_TOKEN || github.token }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
+      - name: Validate Markdown links, terminology, and generated files
+        run: ./build/Test-Documentation.ps1
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
       - name: Build documentation

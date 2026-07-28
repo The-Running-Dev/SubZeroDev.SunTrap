@@ -33,14 +33,14 @@ visible when each claim was checked against the engine's actual contract.
 
 - **Envelope duplication.** Caught five times in the engine, which keeps the canonical ledger
   in its own `CLAUDE.md`. It arrives here as a field added to a shape in
-  `06-content-and-systems` that the engine already owns. Check the envelope, the campaign,
+  `documentation/design/content-and-systems.md` that the engine already owns. Check the envelope, the campaign,
   and the registry before adding any field.
 - **Counts drift from what they count.** "All eight operations" against a nine-row table
   survived two full review passes in the engine repo, and there were three instances of the
   same defect in total. When a document states a number, count the list.
 - **A stale cross-reference is invisible.** Section numbers cited across documents rot
-  silently when a document is restructured. The engine repo gates this in CI; this repo has
-  no such gate yet, so cross-references here are checked by hand or not at all.
+  silently when a document is restructured. This repository's Markdown gate checks local
+  link targets and anchors; the production Docusaurus build checks the published routes.
 - **A diff cannot show a rendering bug.** Markdown joins consecutive lines, so a metadata
   field or blockquote label needs a **blank line** after it. Never trailing double-spaces —
   `git diff --check` rejects those.
@@ -70,6 +70,10 @@ visible when each claim was checked against the engine's actual contract.
 - **Use two checks.** `build/Test-Documentation.ps1` validates repository Markdown and
   generated-file drift. The Docusaurus production build catches site routes and anchors.
   Both are required before merge; GitHub Pages deploys only after `main` receives the change.
+- **Pin the documentation template.** CI, Pages deployment, and
+  `documentation/Dockerfile` use the same immutable container digest. To update it, inspect
+  the desired template tag with `docker manifest inspect --verbose`, review the image change,
+  and update all three references in one PR. Never replace a digest with a mutable tag.
 - **The first real build found two root-layout traps.** With `documentation/` as the site
   root, explicitly include only the authored categories in the Docusaurus configuration;
   otherwise
@@ -88,13 +92,15 @@ visible when each claim was checked against the engine's actual contract.
 Stated plainly so the next reader does not mistake polish for validation.
 
 - **Nothing here has been played, built, or tested.** The design is unproven in every
-  respect. The MVP in `04-mvp.md` exists precisely to find out which parts are wrong.
+  respect. The MVP in `documentation/product/mvp.md` exists precisely to find out which parts
+  are wrong.
 - **All balance numbers are placeholders.** Tick duration, the utility formula, prices,
   wages, thresholds — every one is a guess awaiting a balance pass.
 - **The documents were written and reviewed by the same author.** Internal consistency was
   checked; correctness of the design was not, and could not be.
-- **`06-content-and-systems` is the least validated document.** It fixes field-level shapes
-  ahead of any implementation, which is the part most likely to change on contact with code.
+- **`documentation/design/content-and-systems.md` is the least validated document.** It fixes
+  field-level shapes ahead of any implementation, which is the part most likely to change on
+  contact with code.
 
 ## Open Questions
 

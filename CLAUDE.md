@@ -70,9 +70,10 @@ never be hand-edited.
 | `documentation/delivery/roadmap-risks-and-open-questions.md` | Phases, risks, what is undecided, and §5 — what the engine has already closed |
 | `documentation/design/content-and-systems.md` | Field-level shapes: guest, building, staff, queue, construction. `kindState` internals |
 
-**Reading order is explicit.** Add each page to `documentation/sidebar.ts`; folders provide
-source organization only. Preserve the conceptual reading order shown above and rewrite every
-affected cross-link when a page moves or changes heading.
+**Reading order is explicit.** `documentation/sidebar.ts` groups the site into Orientation,
+Game Design, Product, Delivery, and Working on It; folders provide source organization only.
+Add each page to the appropriate category in that sidebar, preserve the conceptual reading
+order shown above, and rewrite every affected cross-link when a page moves or changes heading.
 
 ### Documentation Site Rules
 
@@ -82,6 +83,9 @@ affected cross-link when a page moves or changes heading.
   `build/ConvertTo-DocumentationHomepage.ps1`; regenerate it after editing the README.
 - Run `./build/Test-Documentation.ps1` and a production documentation build before opening a
   documentation PR. GitHub Actions repeats both checks, then deploys on `main`.
+- The documentation template is pinned by manifest digest in both workflows and in
+  `documentation/Dockerfile`. Update all three together only after reviewing the desired
+  image's digest with `docker manifest inspect --verbose`.
 - Use relative Markdown links only for files inside this repository. The engine is external:
   link its published documentation, never a relative traversal into its checkout.
 

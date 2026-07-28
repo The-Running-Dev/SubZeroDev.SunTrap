@@ -33,7 +33,15 @@ docker build --tag sun-trap-docs ./documentation
 ```
 
 The continuous-integration workflow runs the Markdown gate and a production Docusaurus build
-for pull requests. A push to `main` also deploys the built site to GitHub Pages.
+for pull requests. The Pages deployment runs the same Markdown gate before it builds or
+publishes. A push to `main` also deploys the built site to GitHub Pages.
+
+## Pinned Documentation Image
+
+The documentation template is pinned to the same immutable image manifest digest in
+`documentation/Dockerfile`, Docs CI, and Docs Deploy. To update it, inspect the intended
+template tag with `docker manifest inspect --verbose`, review the image change, and update all
+three references in one pull request. Never substitute a mutable tag such as `latest`.
 
 ## Link Rules
 
