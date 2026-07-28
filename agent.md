@@ -74,6 +74,10 @@ visible when each claim was checked against the engine's actual contract.
   `documentation/Dockerfile` use the same immutable container digest. To update it, inspect
   the desired template tag with `docker manifest inspect --verbose`, review the image change,
   and update all three references in one PR. Never replace a digest with a mutable tag.
+- **Use the custom-domain root.** The public site is `https://suntrap.subzerodev.com/`; the
+  Docusaurus configuration must use that URL with `baseUrl: '/'`. Do not restore the
+  repository-path base URL (`/SubZeroDev.SunTrap/`), or deployed assets and routes will point
+  to the wrong location.
 - **The first real build found two root-layout traps.** With `documentation/` as the site
   root, explicitly include only the authored categories in the Docusaurus configuration;
   otherwise
@@ -82,8 +86,9 @@ visible when each claim was checked against the engine's actual contract.
   `/vision/`, not `/vision/vision/`.
 - **Verified on PR #1.** The local Markdown gate passed. Docker Desktop was unavailable, so
   GitHub Actions provided the production build: both the gate and the containerized
-  Docusaurus build/artifact path passed. Do not record a live deployment until the PR is
-  merged and `Docs Deploy` on `main` succeeds.
+  Docusaurus build/artifact path passed. After merge, `Docs Deploy` on `main` successfully
+  validated, built, uploaded, and published the site. The live site returned HTTPS 200 at
+  `https://suntrap.subzerodev.com/`.
 - **The Game Engine is outside this build.** Link readers to its published documentation;
   never create a relative link into the engine repository from a Sun Trap page.
 

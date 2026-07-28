@@ -4,8 +4,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Sun Trap',
   tagline: 'A satirical resort-management simulation',
-  url: 'https://the-running-dev.github.io',
-  baseUrl: '/SubZeroDev.SunTrap/',
+  url: 'https://suntrap.subzerodev.com',
+  baseUrl: '/',
 
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'throw',
