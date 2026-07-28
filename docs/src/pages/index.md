@@ -1,7 +1,6 @@
 ---
 title: 'Sun Trap'
 description: 'A satirical resort-management simulation'
-sidebar_position: 1
 ---
 
 # SubZeroDev.SunTrap
@@ -11,7 +10,7 @@ discover that people, alcohol, plumbing, weather, queues, staffing and basic geo
 formed an alliance against you.
 
 > **Status:** design documents only. Nothing here has been built, played or tested — the
-> design is unproven in every respect, and [the MVP](/product/mvp/)
+> design is unproven in every respect, and [the MVP](/docs/product/mvp/)
 > exists to find out which parts of it are wrong. All balance numbers are placeholders.
 
 ---
@@ -88,22 +87,23 @@ The wider engine contract, when a question is not kind-specific:
 ## Documentation
 
 The documentation site is published through GitHub Pages at
-[suntrap.subzerodev.com](/).
-Its authored Markdown and Docusaurus project live in `documentation/`, with the site root
-generated from this README. See the
-[documentation-site guide](/working-on-it/documentation-site/)
+[suntrap.subzerodev.com](/). This README is the site home;
+the documentation is published below [`/docs/`](/docs/).
+The installer-managed Docusaurus project lives in `docs/`, and authored Markdown lives
+under `docs/docs/`. The site root is generated from this README. See the
+[documentation-site guide](/docs/working-on-it/documentation-site/)
 for local checks and deployment behaviour.
 
 Read the game documents in this order:
 
 | Document | Holds |
 |---|---|
-| [Vision](/vision/) | Why this game exists, what it should feel like, what is out of scope |
-| [Game Design](/design/game-design/) | The gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
-| [Client Specification](/product/client-specification/) | The visual client — what it renders and what it may never do |
-| [MVP](/product/mvp/) | The smallest slice that proves the game, and its definition of done |
-| [Roadmap, Risks, and Open Questions](/delivery/roadmap-risks-and-open-questions/) | Phases, risks, and what is still undecided |
-| [Content and Systems](/design/content-and-systems/) | Field-level detail: guest, building, staff, queue and construction shapes |
+| [Vision](/docs/vision/) | Why this game exists, what it should feel like, what is out of scope |
+| [Game Design](/docs/design/game-design/) | The gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
+| [Client Specification](/docs/product/client-specification/) | The visual client — what it renders and what it may never do |
+| [MVP](/docs/product/mvp/) | The smallest slice that proves the game, and its definition of done |
+| [Roadmap, Risks, and Open Questions](/docs/delivery/roadmap-risks-and-open-questions/) | Phases, risks, and what is still undecided |
+| [Content and Systems](/docs/design/content-and-systems/) | Field-level detail: guest, building, staff, queue and construction shapes |
 
 ## Originality
 
@@ -111,3 +111,5 @@ This game is **inspired by the resort-management genre and reproduces none of it
 Identity, art, writing, scenarios, building names, maps, balance and UI are original. No
 proprietary names, assets, text or expression from any existing title appear in this
 repository, and none may be added.
+
+[View the documentation](/docs/)

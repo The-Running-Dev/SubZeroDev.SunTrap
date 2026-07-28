@@ -1,50 +1,66 @@
 name: Docs Deploy
 
+# Build the documentation and deploy it to GitHub Pages. Triggers directly on
+# push to main -- there is no longer a caller workflow multiplexing verify vs.
+# deploy, so each half of that split (docs-ci.yml, this file) carries its own
+# triggers and only the permissions it actually needs. Deploy is the only job
+# that needs pages/id-token, which is why it stayed a separate file rather than
+# folding into docs-ci.yml: a single workflow can never grant a job more
+# permission than the workflow itself declares, so combining them would hand
+# the gate and verify jobs credentials they have no use for.
 "on":
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
 
 permissions:
-  contents: read
-  packages: read
-  pages: write
-  id-token: write
+    contents: read
+    packages: read
+    pages: write
+    id-token: write
 
 concurrency:
-  group: github-pages
-  cancel-in-progress: false
+    group: github-pages
+    cancel-in-progress: false
 
 defaults:
-  run:
-    shell: pwsh
+    run:
+        shell: pwsh
 
 jobs:
-  deploy:
-    name: Build and Deploy Documentation
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    container:
-      image: ghcr.io/the-running-dev/docs-template@sha256:1ed8c8b001a0175204cbb8568d9cb018d1f6145fe40b8a209f8179c640d2ffa7
-      credentials:
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.REGISTRY_TOKEN || github.token }}
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
-      - name: Validate Markdown links, terminology, and generated files
-        run: ./build/Test-Documentation.ps1
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v6
-      - name: Build documentation
-        run: /template/scripts/docs-build.ps1 -SourceDocs ./documentation -OutputPath artifacts/docs
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: artifacts/docs
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+    deploy:
+        name: Build and Deploy Documentation
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        # Run the build inside the published base image (template under /template
+        # with node_modules and PowerShell installed).
+        container:
+            image: ghcr.io/the-running-dev/docs-template@sha256:1ed8c8b001a0175204cbb8568d9cb018d1f6145fe40b8a209f8179c640d2ffa7
+            credentials:
+                username: ${{ github.repository_owner }}
+                password: ${{ secrets.REGISTRY_TOKEN || github.token }}
+
+        steps:
+            - name: Check out Repository
+              uses: actions/checkout@v7
+
+            - name: Validate Markdown links, terminology, and generated files
+              run: ./build/Test-Documentation.ps1
+
+            - name: Configure GitHub Pages
+              uses: actions/configure-pages@v6
+
+            - name: Build Documentation
+              run: /template/scripts/docs-build.ps1 -SourceDocs ./docs -OutputPath artifacts/docs
+
+            - name: Upload Pages Artifact
+              uses: actions/upload-pages-artifact@v5
+              with:
+                  path: artifacts/docs
+
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v5
