@@ -24,6 +24,14 @@ const config: Config = {
       {
         docs: {
           path: '.',
+          include: [
+            'index.md',
+            'vision/**/*.md',
+            'design/**/*.md',
+            'product/**/*.md',
+            'delivery/**/*.md',
+            'working-on-it/**/*.md',
+          ],
           exclude: [
             '**/node_modules/**',
             '**/.docusaurus/**',
