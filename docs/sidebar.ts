@@ -30,7 +30,10 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Delivery',
       collapsed: false,
-      items: ['delivery/roadmap-risks-and-open-questions'],
+      items: [
+        'delivery/implementation-programme',
+        'delivery/roadmap-risks-and-open-questions',
+      ],
     },
     {
       type: 'category',

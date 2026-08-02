@@ -120,15 +120,18 @@ re-opening an argument that was settled upstream.
 
 ## Orientation in One Paragraph
 
-This repo = **Sun Trap**, a satirical resort-management game. It is *content and design*, not
-an engine. It is designed for the `world-graph` kind — a navigable world with autonomous
-inhabitants — whose engine-owned contract is published in
+This repo = **Sun Trap**, a satirical resort-management game. It is *content, planning and
+eventually clients*, not an engine. It is designed for the `world-graph` kind — a navigable
+world with autonomous inhabitants — whose engine-owned contract is published in
 [SubZeroDev.GameEngine](https://github.com/The-Running-Dev/SubZeroDev.GameEngine), specified
-at <https://game-engine.subzerodev.com/docs/engine/world-graph-kind>; implementation is still
-pending. The engine owns
+at <https://game-engine.subzerodev.com/docs/engine/world-graph-kind>. The shared engine MVP is
+built; the `world-graph` implementation and companion-package surface are still pending. The
+engine owns
 determinism, state boundaries, the action list, projection, validation and the client
 contract; this repo owns maps, scenarios, definitions, balance, narrative voice and the
 visual client. The sibling game on the `simulation` kind is
 [SubZeroDev.GameOfLife](https://github.com/The-Running-Dev/SubZeroDev.GameOfLife) — the model
-for how a game repo relates to the engine. Build order: prove the kind headlessly, then a
-proving CLI, then a visual client. Nothing is implemented yet.
+for how a game repo relates to the engine. The checkable build order lives in
+[`docs/docs/delivery/implementation-programme.md`](docs/docs/delivery/implementation-programme.md):
+consumer boundary, headless kind, real campaign, proving CLI, then visual client. Nothing
+executable is implemented here yet.
