@@ -9,9 +9,10 @@ description: 'A satirical resort-management simulation'
 discover that people, alcohol, plumbing, weather, queues, staffing and basic geometry have
 formed an alliance against you.
 
-> **Status:** design documents only. Nothing here has been built, played or tested — the
-> design is unproven in every respect, and [the MVP](/docs/product/mvp/)
-> exists to find out which parts of it are wrong. All balance numbers are placeholders.
+> **Status:** design and implementation planning only. Nothing executable has been built,
+> played or tested here — the design is unproven in every respect, and
+> [the MVP](/docs/product/mvp/) exists to find out which parts
+> of it are wrong. All balance numbers are placeholders.
 
 ---
 
@@ -21,7 +22,7 @@ The **game**. It is content and design, built on an engine that lives elsewhere.
 
 ```text
 SubZeroDev.GameEngine     the deterministic platform
-  └── world-graph         the kind — engine-owned contract; implementation pending
+  └── world-graph         the kind — contract complete; implementation pending
         └── Sun Trap      this repository — campaigns, design, client, balance
 ```
 
@@ -33,10 +34,13 @@ the `simulation` kind: the kind contract lives in the engine, the game lives her
 
 ## Engine Integration Status
 
-`world-graph` is specified in the engine as a post-MVP kind; its implementation has not
-started. Sun Trap therefore remains a design-and-content repository until the engine reaches
-that milestone. This repository must track the published contract, not create a local
-substitute.
+The shared engine MVP is implemented and tested. The `world-graph` kind Sun Trap needs is
+specified but not implemented, and the engine does not yet expose a supported package surface
+for companion games. Sun Trap therefore remains a design-and-planning repository while the
+first two milestones in the
+[Implementation Programme](/docs/delivery/implementation-programme/)
+close those dependencies. This repository must track the published contract, not create a
+local substitute.
 
 | Authoritative engine resource | Use it for |
 |---|---|
@@ -102,6 +106,7 @@ Read the game documents in this order:
 | [Game Design](/docs/design/game-design/) | The gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
 | [Client Specification](/docs/product/client-specification/) | The visual client — what it renders and what it may never do |
 | [MVP](/docs/product/mvp/) | The smallest slice that proves the game, and its definition of done |
+| [Implementation Programme](/docs/delivery/implementation-programme/) | The cross-repository architecture, milestones, task checklists and acceptance gates |
 | [Roadmap, Risks, and Open Questions](/docs/delivery/roadmap-risks-and-open-questions/) | Phases, risks, and what is still undecided |
 | [Content and Systems](/docs/design/content-and-systems/) | Field-level detail: guest, building, staff, queue and construction shapes |
 

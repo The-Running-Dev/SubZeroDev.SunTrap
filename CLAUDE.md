@@ -8,7 +8,7 @@ in a platform that lives in another repository.
 
 ```text
 SubZeroDev.GameEngine     the deterministic platform — another repository
-  └── world-graph         the kind — engine-owned contract; implementation pending
+  └── world-graph         the kind — contract complete; implementation pending
         └── Sun Trap      this repository — campaigns, design, client, balance
 ```
 
@@ -21,6 +21,11 @@ SubZeroDev.GameEngine     the deterministic platform — another repository
   repository has. When unsure how a game repo should relate to the engine, look there.
 - **Hosting / NEaaS** — [SubZeroDev.Platform](https://github.com/The-Running-Dev/SubZeroDev.Platform):
   deferred, and not this project's concern.
+
+**Current implementation status:** the engine's shared MVP is built and tested. The
+`world-graph` kind and a supported companion-package surface are not yet built. Track their
+gated work, and all Sun Trap work that follows it, in
+[`docs/docs/delivery/implementation-programme.md`](docs/docs/delivery/implementation-programme.md).
 
 ## The Boundary — Read This Before Anything Else
 
@@ -68,6 +73,7 @@ separately authored landing page for the `/docs/` section.
 | `docs/docs/design/game-design.md` | Gameplay: map, guests, buildings, queues, staff, economy, incidents, objectives |
 | `docs/docs/product/client-specification.md` | The visual client — what it renders, and what it may never do |
 | `docs/docs/product/mvp.md` | The smallest slice that proves the game, and its definition of done |
+| `docs/docs/delivery/implementation-programme.md` | The checkable cross-repository implementation plan and milestone gates |
 | `docs/docs/delivery/roadmap-risks-and-open-questions.md` | Phases, risks, what is undecided, and §5 — what the engine has already closed |
 | `docs/docs/design/content-and-systems.md` | Field-level shapes: guest, building, staff, queue, construction. `kindState` internals |
 
