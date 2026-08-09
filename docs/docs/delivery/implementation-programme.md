@@ -35,14 +35,17 @@ questions; this document defines dependency order, deliverables and completion e
 
 - [x] **GameEngine:** the shared engine MVP is implemented and its authoritative roadmap
       marks W1–W19 complete.
-- [x] **GameEngine:** the current local implementation passes build, typecheck, lint and
+- [x] **GameEngine:** the 2026-08-02 implementation baseline passed build, typecheck, lint and
       677 tests across 57 test files (verified 2026-08-02).
 - [x] **GameEngine:** the `world-graph` seam, tick order, actions, determinism rules,
       projection boundary, reason codes and events are specified.
 - [x] **Sun Trap:** the vision, game design, client contract, MVP and field-level design are
       documented.
-- [ ] **GameEngine:** a production `world-graph` kind exists.
-- [ ] **GameEngine:** the engine has a supported package/export surface for companion games.
+- [x] **GameEngine:** a production `world-graph` kind exists in
+      [`v0.5.0`](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/tree/v0.5.0/src/engine/src/kinds/world-graph).
+- [x] **GameEngine:** the public
+      [`@the-running-dev/game-engine@0.5.0`](https://github.com/users/The-Running-Dev/packages/npm/package/game-engine)
+      package exposes the supported companion-game surface.
 - [ ] **Sun Trap:** this repository contains executable TypeScript game content or a client.
 
 ---
@@ -113,20 +116,24 @@ Features that do not help prove this thread stay outside the MVP.
 
 - [x] **Sun Trap:** add this implementation programme and make it the checklist source of
       truth.
-- [x] **Sun Trap:** distinguish the implemented engine core from the unimplemented
-      `world-graph` kind in repository status text.
-- [ ] **GameEngine:** resolve the `tick_limit_exceeded` versus `tick_limit_reached` reason
-      code inconsistency in the World Graph contract.
-- [ ] **GameEngine:** record that mechanical interfaces interpreted by `world-graph` are
-      engine-owned while concrete Sun Trap values remain game-owned.
-- [ ] **GameEngine:** choose and document the companion-package delivery mechanism.
+- [x] **Sun Trap:** keep repository status text aligned with the implemented engine core,
+      shipped `world-graph` kind and published package surface.
+- [x] **GameEngine:** resolve the `tick_limit_exceeded` versus `tick_limit_reached` reason
+      code inconsistency in the World Graph contract. GameEngine `v0.5.0` uses
+      `tick_limit_reached` in both contract and runtime.
+- [x] **GameEngine:** record that mechanical interfaces interpreted by `world-graph` are
+      engine-owned while concrete Sun Trap values remain game-owned. GameEngine `v0.5.0`
+      exports the authoritative `WorldGraphCampaign` interfaces.
+- [x] **GameEngine:** choose and document the companion-package delivery mechanism. W41,
+      delivered by [PR #108](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/108),
+      chose an exact-version GitHub Packages dependency and consumer smoke test.
 - [ ] **Sun Trap:** decide the MVP questions in §4 before their owning milestone begins.
 
 **Gate**
 
-- [ ] Both repositories describe the same ownership boundary and use the same reason-code
+- [x] Both repositories describe the same ownership boundary and use the same reason-code
       vocabulary.
-- [ ] The package strategy is explicit enough for M1 to implement without another
+- [x] The package strategy is explicit enough for M1 to implement without another
       architectural decision.
 
 ---
@@ -136,21 +143,25 @@ Features that do not help prove this thread stay outside the MVP.
 **Outcome:** a companion repository can build against a supported, versioned GameEngine
 surface.
 
-- [ ] **GameEngine:** add a public package entry point.
-- [ ] **GameEngine:** export the core construction, registry, session, projection and client
+**Evidence:** GameEngine W41 was delivered by
+[PR #108](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/108). The resulting
+public package now includes the completed world-graph surface at version `0.5.0`.
+
+- [x] **GameEngine:** add a public package entry point.
+- [x] **GameEngine:** export the core construction, registry, session, projection and client
       types required by a game without exposing test fixtures as public API.
-- [ ] **GameEngine:** define package `exports`, declarations and build artefacts.
-- [ ] **GameEngine:** choose whether the package remains private in a package registry or is
-      distributed by immutable Git reference.
-- [ ] **GameEngine:** add a consumer smoke fixture that imports only public exports.
-- [ ] **GameEngine:** make package build and consumer smoke verification required in CI.
+- [x] **GameEngine:** define package `exports`, declarations and build artefacts.
+- [x] **GameEngine:** publish the package publicly through GitHub Packages at immutable exact
+      versions.
+- [x] **GameEngine:** add a consumer smoke fixture that imports only public exports.
+- [x] **GameEngine:** make package build and consumer smoke verification required in CI.
 - [ ] **Sun Trap:** add the immutable engine dependency only after the public surface exists.
 
 **Gate**
 
-- [ ] A clean consumer project installs, imports, typechecks and constructs the engine using
+- [x] A clean consumer project installs, imports, typechecks and constructs the engine using
       only supported exports.
-- [ ] CI does not rely on a sibling checkout or mutable branch.
+- [x] CI does not rely on a sibling checkout or mutable branch.
 
 ---
 
@@ -407,12 +418,16 @@ only after the decision is recorded in the game design or roadmap.
 
 ## 5. Immediate Next Work Packet
 
-No simulation code starts until M0's gate is complete. The next packet is therefore:
+M0's cross-repository gate and the engine-owned portion of M1 are complete. M2–M6 remain
+unchecked until their individual tasks are reconciled against GameEngine W42–W49; their
+existence in `v0.5.0` is not, by itself, evidence that every programme criterion passed.
+The next packet is therefore:
 
-1. Resolve the two World Graph contract ambiguities in GameEngine.
-2. Design and implement the engine package consumer boundary in M1.
-3. Return here, pin the resulting engine version, and scaffold the Sun Trap package.
-4. Start M2 in GameEngine with the minimum types required by the MVP acceptance thread.
+1. Audit M2–M6 task by task against the merged GameEngine pull requests, tests and known
+   retained gaps; check only what has named evidence.
+2. Decide each remaining MVP question in §4 before its owning Sun Trap milestone begins.
+3. Pin `@the-running-dev/game-engine@0.5.0` and scaffold the Sun Trap package in M7.
+4. Author and validate the real campaign through the supported package surface.
 
-This order keeps the first Sun Trap code dependent on a real contract instead of creating a
-temporary local engine that later has to be removed.
+This order keeps the first Sun Trap code dependent on the immutable published contract while
+preserving the programme's evidence standard for the engine work already delivered.

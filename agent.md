@@ -124,14 +124,16 @@ This repo = **Sun Trap**, a satirical resort-management game. It is *content, pl
 eventually clients*, not an engine. It is designed for the `world-graph` kind — a navigable
 world with autonomous inhabitants — whose engine-owned contract is published in
 [SubZeroDev.GameEngine](https://github.com/The-Running-Dev/SubZeroDev.GameEngine), specified
-at <https://game-engine.subzerodev.com/docs/engine/world-graph-kind>. The shared engine MVP is
-built; the `world-graph` implementation and companion-package surface are still pending. The
-engine owns
+at <https://game-engine.subzerodev.com/docs/engine/world-graph-kind>. The shared engine MVP,
+the `world-graph` implementation, and its supported public package surface ship in
+`@the-running-dev/game-engine@0.5.0`; Sun Trap has not yet pinned that dependency or authored
+executable campaign content. The engine owns
 determinism, state boundaries, the action list, projection, validation and the client
 contract; this repo owns maps, scenarios, definitions, balance, narrative voice and the
 visual client. The sibling game on the `simulation` kind is
 [SubZeroDev.GameOfLife](https://github.com/The-Running-Dev/SubZeroDev.GameOfLife) — the model
 for how a game repo relates to the engine. The checkable build order lives in
 [`docs/docs/delivery/implementation-programme.md`](docs/docs/delivery/implementation-programme.md):
-consumer boundary, headless kind, real campaign, proving CLI, then visual client. Nothing
-executable is implemented here yet.
+the delivered consumer boundary and headless kind, then the real campaign, proving CLI and
+visual client. Nothing executable is implemented here yet, and M2–M6 remain pending a
+task-by-task evidence audit in this repository.
