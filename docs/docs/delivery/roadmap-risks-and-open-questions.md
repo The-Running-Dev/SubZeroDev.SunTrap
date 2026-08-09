@@ -15,9 +15,11 @@ sidebar_label: Roadmap and Risks
 
 ## 1. Development Phases
 
-**Phase 0 — integration and the kind.** The shared engine MVP is built. The companion-package
-boundary and the `world-graph` implementation remain engine work and must pass M1–M6 of the
-implementation programme before the real campaign and proving client can be completed here.
+**Phase 0 — integration and the kind.** GameEngine `0.5.0` publishes the supported companion
+package and implemented `world-graph` kind. The consumer boundary is evidenced; M2–M6 remain
+unchecked here until their individual programme tasks are audited against the delivered
+engine work. Sun Trap must then pin the immutable package and settle the owning MVP decisions
+before the real campaign and proving client are implemented here.
 
 **Phase 1 — headless kernel.** Tick clock, map state, actions, deterministic entity ids,
 guest spawn, guest needs, one building, revenue, save and load, replay.

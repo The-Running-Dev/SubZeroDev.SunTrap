@@ -17,7 +17,7 @@ The **game**. It is content and design, built on an engine that lives elsewhere.
 
 ```text
 SubZeroDev.GameEngine     the deterministic platform
-  └── world-graph         the kind — contract complete; implementation pending
+  └── world-graph         the kind — implemented in GameEngine 0.5.0
         └── Sun Trap      this repository — campaigns, design, client, balance
 ```
 
@@ -29,13 +29,16 @@ the `simulation` kind: the kind contract lives in the engine, the game lives her
 
 ## Engine Integration Status
 
-The shared engine MVP is implemented and tested. The `world-graph` kind Sun Trap needs is
-specified but not implemented, and the engine does not yet expose a supported package surface
-for companion games. Sun Trap therefore remains a design-and-planning repository while the
-first two milestones in the
+The shared engine and the `world-graph` kind Sun Trap needs are implemented and tested.
+GameEngine publishes the supported public package
+[`@the-running-dev/game-engine@0.5.0`](https://github.com/users/The-Running-Dev/packages/npm/package/game-engine),
+including the kind and its campaign interfaces. Sun Trap remains a design-and-planning
+repository because it has not yet pinned that dependency or authored executable campaign
+content. The
 [Implementation Programme](https://suntrap.subzerodev.com/docs/delivery/implementation-programme/)
-close those dependencies. This repository must track the published contract, not create a
-local substitute.
+records the delivered consumer boundary and leaves M2–M6 pending a task-by-task evidence
+audit. This repository must consume an immutable published version, not create a local
+substitute.
 
 | Authoritative engine resource | Use it for |
 |---|---|
@@ -50,8 +53,9 @@ migration, the content registry, validation, localization, projection, sessions,
 achievements, replay, and the API and MCP surfaces. None of it is re-implemented here.
 
 **The kind contract owns** the tick pipeline, guest and staff agents, pathfinding, queues,
-construction, the resort economy, incidents and objectives. Its implementation remains an
-engine milestone, not a local substitute.
+construction, the resort economy, incidents and objectives. Its implementation ships through
+the engine-owned package surface; changes to those mechanics remain engine work, not a local
+substitute.
 
 **This repository owns** maps, scenarios, building and product definitions, guest
 archetypes, balance, narrative voice, the visual client, and the game's own definition of

@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          { "type": "command", "command": "pwsh -NoProfile -File \"tools/Measure-Session.ps1\"" }
+        ]
+      }
+    ]
+  }
+}
