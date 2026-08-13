@@ -41,9 +41,8 @@ including the kind and its campaign interfaces. Sun Trap remains a design-and-pl
 repository because it has not yet pinned that dependency or authored executable campaign
 content. The
 [Implementation Programme](/docs/delivery/implementation-programme/)
-records the delivered consumer boundary and leaves M2–M6 pending a task-by-task evidence
-audit. This repository must consume an immutable published version, not create a local
-substitute.
+records the completed M2–M6 evidence audit, including the tagged engine checks. This
+repository must consume that immutable published version, not create a local substitute.
 
 | Authoritative engine resource | Use it for |
 |---|---|
@@ -112,7 +111,7 @@ Read the game documents in this order:
 | [MVP](/docs/product/mvp/) | The smallest slice that proves the game, and its definition of done |
 | [Implementation Programme](/docs/delivery/implementation-programme/) | The cross-repository architecture, milestones, task checklists and acceptance gates |
 | [Roadmap, Risks, and Open Questions](/docs/delivery/roadmap-risks-and-open-questions/) | Phases, risks, and what is still undecided |
-| [Content and Systems](/docs/design/content-and-systems/) | Field-level detail: guest, building, staff, queue and construction shapes |
+| [Content Authoring](/docs/design/content-and-systems/) | Catalogs, ids, localization, balance and the engine contract boundary |
 
 ## Originality
 

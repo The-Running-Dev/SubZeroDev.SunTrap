@@ -77,7 +77,7 @@ separately authored landing page for the `/docs/` section.
 | `docs/docs/product/mvp.md` | The smallest slice that proves the game, and its definition of done |
 | `docs/docs/delivery/implementation-programme.md` | The checkable cross-repository implementation plan and milestone gates |
 | `docs/docs/delivery/roadmap-risks-and-open-questions.md` | Phases, risks, what is undecided, and §5 — what the engine has already closed |
-| `docs/docs/design/content-and-systems.md` | Field-level shapes: guest, building, staff, queue, construction. `kindState` internals |
+| `docs/docs/design/content-and-systems.md` | Game-content authoring: catalogs, ids, localization, balance and the engine contract boundary |
 
 **Reading order is explicit.** `docs/sidebar.ts` groups the site into Orientation,
 Game Design, Product, Delivery, and Working on It; folders provide source organization only.

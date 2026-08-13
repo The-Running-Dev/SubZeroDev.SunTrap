@@ -127,7 +127,8 @@ Features that do not help prove this thread stay outside the MVP.
 - [x] **GameEngine:** choose and document the companion-package delivery mechanism. W41,
       delivered by [PR #108](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/108),
       chose an exact-version GitHub Packages dependency and consumer smoke test.
-- [ ] **Sun Trap:** decide the MVP questions in §4 before their owning milestone begins.
+- [x] **Sun Trap:** decide the MVP questions in §4 before their owning milestone begins;
+      the settled decisions are recorded in the roadmap.
 
 **Gate**
 
@@ -170,22 +171,30 @@ public package now includes the completed world-graph surface at version `0.5.0`
 **Outcome:** GameEngine recognizes a real `world-graph` kind and can create and validate a
 minimal world.
 
-- [ ] **GameEngine:** define authoritative map, entity, finance and world-state types.
-- [ ] **GameEngine:** define the minimum campaign/content interfaces required by the MVP.
-- [ ] **GameEngine:** define `WorldGraphView` and terminal outcome types.
-- [ ] **GameEngine:** implement the reason-code and event-name registries.
-- [ ] **GameEngine:** implement campaign narrowing and pure Tier 1/Tier 2 validation.
-- [ ] **GameEngine:** implement `initialState`, `outcome` and the production
+**Audited evidence:** [PR #116](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/116),
+[PR #119](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/119),
+[PR #125](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/125),
+[PR #134](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/134), and
+[PR #173](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/173). The
+`v0.5.0` engine job passed with 67 files and 959 tests, package inspection, and a consumer
+smoke test.
+
+- [x] **GameEngine:** define authoritative map, entity, finance and world-state types.
+- [x] **GameEngine:** define the minimum campaign/content interfaces required by the MVP.
+- [x] **GameEngine:** define `WorldGraphView` and terminal outcome types.
+- [x] **GameEngine:** implement the reason-code and event-name registries.
+- [x] **GameEngine:** implement campaign narrowing and pure Tier 1/Tier 2 validation.
+- [x] **GameEngine:** implement `initialState`, `outcome` and the production
       `worldGraphKind` assembly.
-- [ ] **GameEngine:** register a synthetic one-map campaign fixture for engine tests only.
-- [ ] **GameEngine:** reject malformed campaign content without throwing.
+- [x] **GameEngine:** register a synthetic one-map campaign fixture for engine tests only.
+- [x] **GameEngine:** reject malformed campaign content without throwing.
 
 **Gate**
 
-- [ ] `createGame` produces a deterministic tick-zero world through the real kind.
-- [ ] A broken map, missing reference and invalid tick cap each fail with the expected
+- [x] `createGame` produces a deterministic tick-zero world through the real kind.
+- [x] A broken map, missing reference and invalid tick cap each fail with the expected
       validation result.
-- [ ] The engine's build, typecheck, lint and complete test suite pass.
+- [x] The engine's build, typecheck, lint and complete test suite pass.
 
 ---
 
@@ -194,21 +203,24 @@ minimal world.
 **Outcome:** the player can inspect and place the MVP buildings through authoritative engine
 rules.
 
-- [ ] **GameEngine:** implement footprint rotation and entrance resolution.
-- [ ] **GameEngine:** implement bounds, overlap, terrain, unlock and affordability checks.
-- [ ] **GameEngine:** implement `build` with immediate MVP construction.
-- [ ] **GameEngine:** derive building and queue ids from `nextEntityOrdinal`.
-- [ ] **GameEngine:** add `previewAction` as the real action path with discarded state.
-- [ ] **GameEngine:** add `previewAction` to the session surface, text client coverage and MCP
+**Audited evidence:** [PR #125](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/125)
+and [PR #133](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/133).
+
+- [x] **GameEngine:** implement footprint rotation and entrance resolution.
+- [x] **GameEngine:** implement bounds, overlap, terrain, unlock and affordability checks.
+- [x] **GameEngine:** implement `build` with immediate MVP construction.
+- [x] **GameEngine:** derive building and queue ids from `nextEntityOrdinal`.
+- [x] **GameEngine:** add `previewAction` as the real action path with discarded state.
+- [x] **GameEngine:** add `previewAction` to the session surface, text client coverage and MCP
       surface in the same change.
-- [ ] **GameEngine:** project the build catalogue, costs, unlock state and price ranges.
-- [ ] **GameEngine:** test every placement reason code and preview/submit parity.
+- [x] **GameEngine:** project the build catalogue, costs, unlock state and price ranges.
+- [x] **GameEngine:** test every placement reason code and preview/submit parity.
 
 **Gate**
 
-- [ ] The same parameters accepted by preview are accepted by submit from the same state.
-- [ ] Preview never changes state or appends to the action log.
-- [ ] No placement rule exists in a client.
+- [x] The same parameters accepted by preview are accepted by submit from the same state.
+- [x] Preview never changes state or appends to the action log.
+- [x] No placement rule exists in a client.
 
 ---
 
@@ -217,21 +229,25 @@ rules.
 **Outcome:** time advances and a guest develops a need and chooses a destination
 deterministically.
 
-- [ ] **GameEngine:** implement the normative 20-step pipeline with unimplemented systems as
+**Audited evidence:** [PR #128](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/128),
+[PR #131](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/131), and
+[PR #134](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/134).
+
+- [x] **GameEngine:** implement the normative 20-step pipeline with unimplemented systems as
       explicit no-ops in their fixed positions.
-- [ ] **GameEngine:** implement bounded `advance_ticks` and tick incrementing.
-- [ ] **GameEngine:** implement deterministic guest spawning from tick streams.
-- [ ] **GameEngine:** implement thirst and toilet need drift for the MVP archetype.
-- [ ] **GameEngine:** implement integer utility scoring for reachable drink/toilet options.
-- [ ] **GameEngine:** key guest draws by guest id and guest-owned draw count.
-- [ ] **GameEngine:** expose guest intent and needs through the projection.
-- [ ] **GameEngine:** add split-batch and event-sink-independence tests.
+- [x] **GameEngine:** implement bounded `advance_ticks` and tick incrementing.
+- [x] **GameEngine:** implement deterministic guest spawning from tick streams.
+- [x] **GameEngine:** implement thirst and toilet need drift for the MVP archetype.
+- [x] **GameEngine:** implement integer utility scoring for reachable drink/toilet options.
+- [x] **GameEngine:** key guest draws by guest id and guest-owned draw count.
+- [x] **GameEngine:** expose guest intent and needs through the projection.
+- [x] **GameEngine:** add split-batch and event-sink-independence tests.
 
 **Gate**
 
-- [ ] One batch of `n` ticks reaches the same kind state as every tested split of `n`.
-- [ ] Repeating the same seed and actions produces byte-identical serialized state.
-- [ ] Changing player action batching does not change a guest's unrelated random draws.
+- [x] One batch of `n` ticks reaches the same kind state as every tested split of `n`.
+- [x] Repeating the same seed and actions produces byte-identical serialized state.
+- [x] Changing player action batching does not change a guest's unrelated random draws.
 
 ---
 
@@ -239,20 +255,23 @@ deterministically.
 
 **Outcome:** the guest reaches the drink stand, waits, pays and receives service.
 
-- [ ] **GameEngine:** implement integer-cost deterministic A* with fixed neighbour order.
-- [ ] **GameEngine:** break all pathfinding ties by entity id and canonical position order.
-- [ ] **GameEngine:** persist a committed route while keeping pathfinding caches out of state.
-- [ ] **GameEngine:** implement movement, arrival and unreachable-target handling.
-- [ ] **GameEngine:** implement stable queue insertion, capacity and abandonment.
-- [ ] **GameEngine:** implement service timing and queue progression.
-- [ ] **GameEngine:** implement `set_price` validation and integer-cent payment.
-- [ ] **GameEngine:** record batch-grain financial changes and per-guest service events.
+**Audited evidence:** [PR #125](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/125)
+and [PR #131](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/131).
+
+- [x] **GameEngine:** implement integer-cost deterministic A* with fixed neighbour order.
+- [x] **GameEngine:** break all pathfinding ties by entity id and canonical position order.
+- [x] **GameEngine:** persist a committed route while keeping pathfinding caches out of state.
+- [x] **GameEngine:** implement movement, arrival and unreachable-target handling.
+- [x] **GameEngine:** implement stable queue insertion, capacity and abandonment.
+- [x] **GameEngine:** implement service timing and queue progression.
+- [x] **GameEngine:** implement `set_price` validation and integer-cent payment.
+- [x] **GameEngine:** record batch-grain financial changes and per-guest service events.
 
 **Gate**
 
-- [ ] A guest spawns, selects, reaches, queues at and buys from a drink stand.
-- [ ] An unreachable stand emits the diagnosable path-failure event and receives no sale.
-- [ ] Equal-cost paths and equal-utility destinations resolve identically across runs.
+- [x] A guest spawns, selects, reaches, queues at and buys from a drink stand.
+- [x] An unreachable stand emits the diagnosable path-failure event and receives no sale.
+- [x] Equal-cost paths and equal-utility destinations resolve identically across runs.
 
 ---
 
@@ -260,21 +279,35 @@ deterministically.
 
 **Outcome:** the complete MVP simulation can be won and lost headlessly.
 
-- [ ] **GameEngine:** generate litter and reduce cleanliness after service.
-- [ ] **GameEngine:** implement `hire_staff` for the cleaner role.
-- [ ] **GameEngine:** generate, prioritize and assign cleaning tasks deterministically.
-- [ ] **GameEngine:** path the cleaner to litter and restore cleanliness.
-- [ ] **GameEngine:** charge cleaner wages using the chosen MVP cadence.
-- [ ] **GameEngine:** evaluate the revenue/cleanliness objective and failure conditions.
-- [ ] **GameEngine:** publish objective and failure ids through terminal outcome.
-- [ ] **GameEngine:** project finances, cleanliness, cleaner state and objective progress.
-- [ ] **GameEngine:** add win, loss, save/load and replay fixtures.
+**Audited evidence:** [PR #131](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/131),
+[PR #134](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/134),
+[PR #136](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/136), and
+[PR #138](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/138). On the
+`v0.5.0` tag the World Graph replay passed. The release-tag replay job failed only because
+newer Stable Life fixtures were absent from the older baseline; [PR #257](https://github.com/The-Running-Dev/SubZeroDev.GameEngine/pull/257)
+fixed that CI comparison mechanism.
+
+- [x] **GameEngine:** generate litter and reduce cleanliness after service.
+- [x] **GameEngine:** implement `hire_staff` for the cleaner role.
+- [x] **GameEngine:** generate, prioritize and assign cleaning tasks deterministically.
+- [x] **GameEngine:** path the cleaner to litter and restore cleanliness.
+- [x] **GameEngine:** charge cleaner wages using the chosen MVP cadence.
+- [x] **GameEngine:** evaluate the revenue/cleanliness objective and failure conditions.
+- [x] **GameEngine:** publish objective and failure ids through terminal outcome.
+- [x] **GameEngine:** project finances, cleanliness, cleaner state and objective progress.
+- [x] **GameEngine:** add win, loss, save/load and replay fixtures.
 
 **Gate**
 
-- [ ] The synthetic engine fixture is playable to both the expected win and expected loss.
-- [ ] Save/load mid-run reaches the same result as uninterrupted play.
-- [ ] Removing every event sink changes no state or outcome.
+- [x] The synthetic engine fixture is playable to both the expected win and expected loss.
+- [x] Save/load mid-run reaches the same result as uninterrupted play.
+- [x] Removing every event sink changes no state or outcome.
+
+### Retained post-MVP engine gaps
+
+These gaps do not block Sun Trap's documented MVP, but they prevent a claim that the complete
+game design is implemented: timed construction, a building lifecycle, alerts, complete
+cleanliness and wear, and spontaneous incident rolls. They remain engine follow-up work.
 
 ---
 
@@ -418,16 +451,13 @@ only after the decision is recorded in the game design or roadmap.
 
 ## 5. Immediate Next Work Packet
 
-M0's cross-repository gate and the engine-owned portion of M1 are complete. M2–M6 remain
-unchecked until their individual tasks are reconciled against GameEngine W42–W49; their
-existence in `v0.5.0` is not, by itself, evidence that every programme criterion passed.
-The next packet is therefore:
+M0's cross-repository gate and the engine-owned portion of M1 are complete. The M2–M6
+evidence audit is complete; GameEngine `v0.5.0` is sufficient for the Sun Trap MVP. The next
+packet is therefore:
 
-1. Audit M2–M6 task by task against the merged GameEngine pull requests, tests and known
-   retained gaps; check only what has named evidence.
-2. Decide each remaining MVP question in §4 before its owning Sun Trap milestone begins.
-3. Pin `@the-running-dev/game-engine@0.5.0` and scaffold the Sun Trap package in M7.
-4. Author and validate the real campaign through the supported package surface.
+1. Pin `@the-running-dev/game-engine@0.5.0` and scaffold the Sun Trap package in M7.
+2. Author and validate the real campaign through the supported package surface.
+3. After M7 is merged and pins the package, reconcile GameEngine's T4 documentation status.
 
 This order keeps the first Sun Trap code dependent on the immutable published contract while
 preserving the programme's evidence standard for the engine work already delivered.
