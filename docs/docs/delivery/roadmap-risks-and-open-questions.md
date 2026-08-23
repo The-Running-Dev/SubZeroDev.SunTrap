@@ -16,10 +16,9 @@ sidebar_label: Roadmap and Risks
 ## 1. Development Phases
 
 **Phase 0 — integration and the kind.** GameEngine `0.5.0` publishes the supported companion
-package and implemented `world-graph` kind. The consumer boundary is evidenced; M2–M6 remain
-unchecked here until their individual programme tasks are audited against the delivered
-engine work. Sun Trap must then pin the immutable package and settle the owning MVP decisions
-before the real campaign and proving client are implemented here.
+package and implemented `world-graph` kind. The consumer boundary and M2–M6 evidence audit
+are complete. Sun Trap must now pin the immutable package and author the real campaign before
+the proving client is implemented here.
 
 **Phase 1 — headless kernel.** Tick clock, map state, actions, deterministic entity ids,
 guest spawn, guest needs, one building, revenue, save and load, replay.
@@ -120,7 +119,6 @@ Questions the engine has since answered are listed in §5 rather than here.
 
 **Time and balance**
 
-- Tick duration — the draft suggested 1 tick = 10 simulated seconds. Provisional.
 - Do financial reports close hourly or daily?
 
 **Guests**
@@ -129,28 +127,17 @@ Questions the engine has since answered are listed in §5 rather than here.
 - Do they know every building, or only discovered and visible ones?
 - Are preferences fixed or partially randomized at arrival?
 - At what point do guests abandon queues?
-- Do groups ship in the first campaign or later?
 
 **Buildings**
 
-- Immediate construction for the MVP, or construction time from the start?
-- Is product inventory modelled initially?
-- Are utilities required?
 - How are entrances authored?
-- Can buildings rotate freely?
 
 **Staff**
-
-- Automatic global dispatch, or zones first?
-- Do shifts exist initially?
-- Are service workers explicit agents, or part of building capacity?
-- Do staff have needs?
 
 **Economy**
 
 - How elastic is demand to price?
 - Are wages charged continuously or daily?
-- Is bankruptcy immediate, or does the escalation ladder apply?
 - Are loans included before the first campaign?
 
 **Incidents**
@@ -170,9 +157,17 @@ Questions the engine has since answered are listed in §5 rather than here.
 
 - Is *Sun Trap* the final title? It is a working name, chosen when these documents were
   split out of the engine repository.
-- What is the first resort theme?
-- How are content ids named? (Entity ids at runtime are engine-derived; authored content ids
-  are this repository's convention.)
+
+### Settled for M7
+
+- Authored content ids are local kebab-case; runtime entity ids remain engine-derived.
+- One tick is 10 simulated seconds and `ticksPerDay = 8,640`.
+- The MVP permits rotation `0` only, immediate construction, unlimited inventory and no
+  utilities.
+- Cleaner dispatch is global; drink-stand service is implicit; groups, shifts and fatigue are
+  out of scope.
+- Bankruptcy is immediate after one tick below zero.
+- The first resort is a budget-beach soft opening.
 
 ---
 

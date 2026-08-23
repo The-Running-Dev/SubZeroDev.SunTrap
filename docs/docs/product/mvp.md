@@ -12,10 +12,11 @@ sidebar_label: MVP
 > **This is downstream of engine work.** The engine's own
 > [MVP](https://game-engine.subzerodev.com/docs/engine/mvp) has proved the shared platform.
 > The [`world-graph` kind](https://game-engine.subzerodev.com/docs/engine/world-graph-kind)
-> Sun Trap needs is specified but not implemented, and its companion-package boundary is not
-> yet available. The [Implementation Programme](../delivery/implementation-programme.md)
-> sequences those dependencies. The determinism and architecture boxes below are **engine**
-> guarantees this game can only break, never establish.
+> Sun Trap needs is implemented and published in
+> `@the-running-dev/game-engine@0.5.0`. The
+> [Implementation Programme](../delivery/implementation-programme.md) records the M2–M6
+> evidence audit and sequences the remaining game-owned work. The determinism and architecture
+> boxes below are **engine** guarantees this game can only break, never establish.
 
 ---
 
