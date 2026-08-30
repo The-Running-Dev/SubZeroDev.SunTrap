@@ -6,6 +6,13 @@
           { "type": "command", "command": "pwsh -NoProfile -File \"tools/Measure-Session.ps1\"" }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "pwsh -NoProfile -File \"tools/Measure-Session.ps1\"" }
+        ]
+      }
     ]
   }
 }

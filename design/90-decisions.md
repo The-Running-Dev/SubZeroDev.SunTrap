@@ -7,6 +7,36 @@ Append-only. Newest at the top. The rejected alternatives are the point — with
 
 ---
 
+### 2026-08-13 — Reconcile `CLAUDE.md`'s process contract forward to kit commit `6bdd8dc`
+Context: `.claude/commands/*`, `tools/*.ps1`, and `.claude/COMPANIONS.md` had already been
+brought current to kit `HEAD` by `Sync-Kit.ps1` (`.claude/kit.json`'s `syncedCommit` already
+read `6bdd8dc`), but `CLAUDE.md`'s hand-merged process-contract content had not been
+re-reconciled since the original `2026-08-04` install at kit commit `9b8313c`. Diffing the
+two showed `CLAUDE.md` was missing everything the kit's `AGENTS.md` gained across the ~20
+commits between them: the work-start and session-boundary banner conventions, the expanded
+delegation carve-outs (non-default-branch push, `/done`'s branch deletion, `/resolve`'s
+thread resolution, checkbox ticking, closing/labelling issues), the full `design/FROZEN.md`
+marker mechanism and template (previously only a condensed summary paragraph), the "never
+hand back a diff, make the edit" rule, and the `Measure-Session.ps1` Codex/Copilot
+measurement caveat.
+Chosen: Merge all of it into `CLAUDE.md`'s existing structure, in this repository's
+established voice (Title Case headers, "the requester"/"the person" instead of "I"/"me"),
+the same pattern the `2026-08-04` merge used. Two of the kit's own internal invariant-id
+citations (`I6`, `I9`) were dropped rather than carried over — they reference numbered
+invariants in the kit's own `design/20-contract.md`, which is never installed into a target,
+so citing them here would be a dangling reference. Also added the `UserPromptSubmit` hook for
+`tools/Measure-Session.ps1` alongside the existing `SessionEnd` hook in `.claude/settings.json`
+(`pwsh` confirmed on `PATH`, no existing hook on that event) and bumped `.claude/kit.json`'s
+`commit` field to `6bdd8dc` — it had never been updated past the original `9b8313c` install
+even though `syncedCommit` had moved on.
+Rejected: **Leave `CLAUDE.md` as the more conservative, already-signed-off contract** — the
+other option presented; rejected because the gap traced to staleness (the manual
+`AGENTS.md`/`CLAUDE.md` reconciliation step was simply never re-run after the command/tooling
+sync), not to a deliberate policy choice recorded anywhere, and the newer kit content is
+itself a record of decisions already made and reasoned through in the kit's own history.
+Reversibility: cheap — a documentation and hook-config merge only; any individual section can
+be reverted without touching tooling or process state.
+
 ### 2026-08-10 — Reconcile Sun Trap's dependency status to GameEngine 0.5.0
 Context: Sun Trap's README, standing instructions, agent orientation, roadmap and
 implementation programme still said the `world-graph` kind and companion-package surface

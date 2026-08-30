@@ -1,0 +1,14 @@
+{
+  "manifestHash": "938232918cd09b7fb25e06e2ed67eb798d7435566732189e2e66e44aca0f7763",
+  "generated": "2026-08-10",
+  "gates": [
+    {
+      "name": "Documentation links and terminology",
+      "command": "./build/Test-Documentation.ps1"
+    },
+    {
+      "name": "Verify Documentation Build",
+      "command": "docker run --rm ... /template/scripts/docs-build.ps1 -SourceDocs ./docs -OutputPath artifacts/docs"
+    }
+  ]
+}
