@@ -2,6 +2,13 @@
 description: Take the current branch's pull request to merge-ready — description, gates, then review threads
 ---
 
+<!-- companion:declared:start -->
+**Per-repo companion:** `.claude/commands/pr-local.md`. Read it now, if it exists — an absent,
+empty, or frontmatter-only file is no companion, and this file then stands alone.
+It may override: `vocabulary`, `extra-steps`, `gate-commands`, `tightened-authorization`. It may never override anything in
+[`.claude/COMPANIONS.md`](../COMPANIONS.md) § *Never*, which is also where these categories are defined.
+<!-- companion:declared:end -->
+
 Take the work on the current branch to merge-ready, in three phases, in order.
 
 **This command owns the sequence. It does not own the procedure of any phase it delegates.** Phase 2 is `.claude/commands/verify.md` and phase 3 is `.claude/commands/resolve.md`, run in full, in this same session. Those files stay the single home for how a gate is discovered and how a thread is classified — this one never restates them, because a second copy of a rule is a promise it will diverge (`AGENTS.md`, *Single ownership*). Both remain invocable on their own: `/verify` to run the gates against any tree, `/resolve` to work threads on a pull request this command did not open.
@@ -14,12 +21,16 @@ Take the work on the current branch to merge-ready, in three phases, in order.
 
 ```powershell
 git status --short --branch
-git log --oneline @{u}..HEAD
+if (git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>$null) {
+  git log --oneline '@{u}..HEAD'
+} else {
+  Write-Host "No upstream configured for this branch — push first: git push -u origin HEAD"
+}
 git diff --check
 gh pr view --json number,isDraft,url,title 2>$null
 ```
 
-- **Every commit must be pushed first.** Announcing a PR invites an immediate merge, and a commit pushed after that lands on a branch nobody merges. Check `@{u}..HEAD` is empty before you announce anything.
+- **Every commit must be pushed first.** Announcing a PR invites an immediate merge, and a commit pushed after that lands on a branch nobody merges. **Check for an upstream before running the ahead/behind comparison** — `@{u}..HEAD` on a branch with no upstream configured errors rather than reporting anything, so guard it as above and, where none is configured, state the next step (`git push -u origin HEAD`) rather than pushing on your own initiative; pushing still follows this repository's own authorization rule. Once an upstream exists, `@{u}..HEAD` must be empty before you announce anything.
 - **Never open a PR from the default branch.** If that is where the work is, stop and say so — moving commits to a branch is the user's call.
 - Stage by explicit named path. Never `git add -A`, `git add .`, or a bare directory.
 
@@ -54,7 +65,7 @@ Not yet run — the gates run next and this section is replaced with their repor
 
 ## Phase 2 — the gates
 
-**Run `.claude/commands/verify.md` in full**, against the branch and worktree this PR points at, then replace the description's `Verified` section with its report **verbatim** — the same three lists, not a summary. Restating it from memory is the fabricated gate result that command exists to prevent.
+**Run `.claude/commands/verify.md` in full**, against the branch and worktree this PR points at, then replace the description's `Verified` section with its report **verbatim** — the same three lists, not a summary. Restating it from memory is the fabricated gate result that command exists to prevent. `/verify` validates its own `.claude/verify-report.json` before rendering it (`tools/Test-VerifyReport.ps1`); a report that fails that validation is not copied into the PR — fix the artifact and re-render first.
 
 - **Do not claim a check passed that did not run.** The did-not-run list goes into the description word for word, including the reason each entry did not run.
 - **Do not fix a failing gate here.** That prohibition belongs to `/verify` and this command does not relax it by wrapping it — a failing gate ends in a decision put to the user, not a repair (`AGENTS.md`, *Working with me*).

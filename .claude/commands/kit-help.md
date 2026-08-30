@@ -3,6 +3,13 @@ description: Where this repository is in the pipeline, and what to run next. Usa
 argument-hint: [all, or a stage or command name]
 ---
 
+<!-- companion:declared:start -->
+**Per-repo companion:** `.claude/commands/kit-help-local.md`. Read it now, if it exists — an absent,
+empty, or frontmatter-only file is no companion, and this file then stands alone.
+It may override: `vocabulary`, `document-map`. It may never override anything in
+[`.claude/COMPANIONS.md`](../COMPANIONS.md) § *Never*, which is also where these categories are defined.
+<!-- companion:declared:end -->
+
 Orient the user in this repository's pipeline. **$1** narrows it — `all` shows the whole flow, a stage or command name shows that step. With nothing, work out where the repository actually is and show the current step and the next one.
 
 **Do not dump this whole file back.** It is a map you read, not a message you echo. Reciting eleven steps to someone who needs the next one is the mechanical text work `AGENTS.md` says should not be a model's job at all — and here, unlike a script, you can tell which step they are on.
@@ -57,8 +64,8 @@ One slice, one branch, one session. Do not start slice N+1 because you noticed s
 1. **`/slice S3`**, or bare **`/slice`** for the lowest-numbered slice that is neither closed nor fully ticked and whose dependencies are done. Branches, states criteria by id, writes failing tests first, implements against the contract, commits, pushes, opens the PR — **never as a draft** — ticks the `Done when` boxes it confirms, and ends by reporting the ids it believes are met.
 2. **`/pr`** — same session, and the whole of the rest of the branch's life. Three phases in order: writes the real description onto the PR `/slice` opened; runs the gates and puts their three lists — the one that matters is *did not run* — into the `Verified` section **verbatim**, fixing nothing; then works the review threads automatically, fix → push → confirm checks on the **new** head → only then resolve. Resolving is delegated, no ask required (`AGENTS.md`, *Git and delivery*).
 3. **Merge** — the user's, unless this repository's instruction file explicitly delegates it.
-4. **`/track`** — **new session**, after the merge. Closes the issue if every box is ticked.
-5. **`/done`** — any time after the merge. Switches back to the default branch, deletes the now-merged local slice branch (and any other local branch already merged), and prunes remote-tracking refs for branches gone from `origin`. Optional housekeeping, not a pipeline step — nothing downstream depends on it.
+4. **`/clean`** — right after the merge, in the same session. Switches back to the default branch, deletes the now-merged local slice branch (and any other local branch already merged), and prunes remote-tracking refs for branches gone from `origin`. It does not end the loop on its own: every run hands off to `/track`, and it never runs `/track` itself.
+5. **`/track`** — **new session**, after `/clean`. Closes the issue if every box is ticked.
 
 `/verify` and `/resolve` are phases 2 and 3 of `/pr` and own their own procedure; both stay callable on their own when you want the gates run against a tree, or threads worked on a PR `/pr` did not open.
 
@@ -89,3 +96,10 @@ For something short-lived, the honest minimum is `00-brief.md` with real non-goa
 - **Where it needs a fresh session, say so as the banner defined in `AGENTS.md`, *Session boundaries*** — set off visibly, not folded into the same sentence as the orientation line. This is the one command whose entire job is telling the user what's next, so it is the last place that banner should be easy to miss.
 - **Do not run the next command.** This orients; it does not act. Ending a session may be the next step, and a command that starts work cannot tell the user to start a new session for it.
 - **Do not invent a step, a stage, or a tier.** If something here does not cover the situation, say so — an invented step in a help command is the one that gets followed.
+
+## Re-run
+
+Stateless and safe to run any time, including back to back. It writes nothing and remembers
+nothing between runs — every orientation is re-derived from `design/`, the current branch, and
+the tracker as they stand at the moment it runs, so the answer can legitimately change between
+two calls in the same conversation if something else moved the tree in between.
