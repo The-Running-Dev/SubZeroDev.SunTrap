@@ -267,7 +267,8 @@ accumulating list of historical names.
 | `/install-all` | `sonnet`, `medium` | Escalate only to judge whether a per-repo hard stop is actually safe to resolve — never to resolve it unattended |
 | `/kit-sync` | `sonnet`, `medium` | Escalate only to judge whether a refused fast-forward in `~/.agent-kit` is safe to resolve — never to force past it unattended |
 | `/kit-help` | `haiku`, `low` | Orientation from file existence and a tracker listing. Escalate only where the repository's state matches no stage |
-| `/done` | `haiku`, `low` | Mechanical git housekeeping — branch switch, `--merged` check, prune. Escalate only to judge whether an unmerged-looking branch is actually safe to delete |
+| `/next` | `sonnet`, `medium` | Orients exactly as `/kit-help` does, then **acts** — but only where the next step is legal in this session. Where *Session boundaries* puts a fresh session in the way, it emits the banner and stops rather than crossing it. Escalate only if the next step is itself deep-reasoning tier, and then name that tier and stop rather than running it under this one |
+| `/clean` | `haiku`, `low` | Mechanical git housekeeping — branch switch, `--merged` check, prune. Escalate only to judge whether an unmerged-looking branch is actually safe to delete |
 | `/freeze` | `sonnet`, `medium` | `Frozen because`/`Lifts when` come from the requester, never invented — ask rather than draft them |
 | `/unfreeze` | `sonnet`, `medium` for the sequencing; runs `/reconcile` (`opus`, `high`) and `/track` (`sonnet`, `medium`) as its own phases | Runs unattended, no confirmation prompt — that is this repository's policy, not a gap |
 
@@ -547,14 +548,22 @@ evidence behind a recommendation.
   someone to reconcile the two by hand; an open PR is reverted by closing it, which is as
   cheap as closing an issue. **Merging is not carved out and stays the requester's.**
 - Do not delete files, branches, or history without explicit authorization.
-- **Deleting a local branch `/done` independently confirms via `git branch --merged` is
-  delegated in this repository.** `/done` (`.claude/commands/done.md`) runs proactively — as
+- **Deleting a local branch `/clean` independently confirms via `git branch --merged` is
+  delegated in this repository.** `/clean` (`.claude/commands/clean.md`) runs proactively — as
   soon as a merge is on the table, not only when asked — and deletes every branch on that
   confirmed list without a chat confirmation first; the `--merged` check is the
   authorization. It also may stash (never discard) a dirty tree to unblock its own branch
-  switch, and always reports the stash back rather than popping it silently. This delegation
-  stops exactly where `--merged` stops: a branch it did not confirm, or a `-d` refusal on one
-  it did, still needs a separate ask before anything stronger (`-D`) is even considered.
+  switch, and always reports the stash back rather than popping it silently. **Force-deleting a
+  squash-merged branch is delegated on the same terms**, because the evidence is now as strong
+  as `--merged`'s: `tools/Invoke-DoneHousekeeping.ps1` lists a branch in `SquashMergeCandidates`
+  only when the merged pull request exists *and* the local branch tip equals that pull
+  request's `headRefOid`, so the branch being deleted is exactly the commit that merged and
+  nothing more. A branch carrying commits the merged pull request does not account for fails
+  that comparison, is reported in `TipAheadOfMergedPr`, and is never force-deleted — which is
+  the case the old confirmation prompt was asked to catch and never actually checked. This
+  delegation stops exactly where those two checks stop: a branch neither `--merged` nor the tip
+  comparison confirms, and a `-d` refusal on one that was confirmed, still need a separate ask
+  before anything stronger is considered.
 - Check review **threads**, not just requested reviewers — an automated reviewer can leave
   blocking conversation threads that do not appear in a reviewer listing. Resolve a thread
   only when a validated fix satisfies it; leave ambiguous findings open and report them.
@@ -647,6 +656,35 @@ documentation site, agent working conventions). It is separate from
 [`docs/docs/delivery/roadmap-risks-and-open-questions.md`](docs/docs/delivery/roadmap-risks-and-open-questions.md)
 §4, which is the register for the *game's* open design questions — do not use one for the
 other's subject matter.
+
+## Writing a Design-State Record
+
+**Where this repository's own `design/state/` exists**, a decision that changes it is written by
+this sequence — the citation `/reconcile`, `/contract`, and `/design` each point at instead of
+restating it:
+
+1. Append the entry to `design/90-decisions.md`, in the existing format (*Decision Logging*,
+   above), unchanged. Nothing already there is touched.
+2. Write the decision record: anchor, status, claim.
+3. Update the affected unit records — adding the id to `Live`, and moving any id this decision
+   supersedes from `Live` to the companion's `Archival`.
+4. **Where the same change writes the decision's terms into a site** — a section of a unit's own
+   artifact, or a contract's `Semantics` — name that site in the decision's `StatedIn` and leave
+   the id out of that unit's `Live`. This is the ordinary case for a policy document and the
+   command file it governs, and it is one step rather than a later cleanup pass precisely so
+   that it is not one.
+5. Regenerate projections — `tools/Update-DesignProjection.ps1`, a real run, not `-DryRun`.
+6. Run the checker — `tools/Test-DesignState.ps1`.
+
+Step 5 before step 6 is not optional — checking before regenerating reports every projection as
+stale, which trains the reader to ignore the report.
+
+**Absorption also happens without a decision being made**, when an amendment finally writes an
+already-recorded decision into its site. That is step 4 in isolation: name the site, drop the id
+from `Live`, regenerate, check.
+
+Where `design/state/` does not exist, none of this applies — write the decision-log entry alone,
+per *Decision Logging* above.
 
 ## House Conventions
 
