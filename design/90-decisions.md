@@ -7,6 +7,68 @@ Append-only. Newest at the top. The rejected alternatives are the point — with
 
 ---
 
+### 2026-08-30 — `/clean` and `/done` consolidated to `/clean`; `/done` retired
+Context: `/kit-sync` found two housekeeping commands doing the same job. `clean.md` was added
+fresh by the previous sync (`0e1cca0`, kit commit `d57880d`) as the kit's current core. `done.md`
+was this repository's pre-existing command under a different name, hand-patched in that same
+sync but left on the superseded `<!-- companion:start -->` marker (every other command file in
+the repository already used `<!-- companion:declared:start -->`) and missing the squash-merge
+force-delete flow `clean.md` had. `CLAUDE.md`'s Command routing table and this file's own
+2026-08-13 entry referred to `/done`, not `/clean`.
+Chosen: Adopt the kit's own naming. Deleted `done.md`; kept `clean.md` as installed by
+`Sync-Kit.ps1`. Renamed every live `/done` reference to `/clean` in `CLAUDE.md` (the Command
+routing table row and the branch-deletion delegation bullet, which also picked up the
+squash-merge force-delete wording new in kit commit `5095a55`). The 2026-08-13 entry's own
+`/done` reference was left as written — it is a historical record of what was true then, not a
+live pointer. Neither `clean-local.md` nor `done-local.md` existed, so no companion content was
+at risk. `/clean`'s tier was kept at this repository's existing `haiku`/`low` rather than the
+kit's `sonnet`/`medium` — that divergence predates this sync (it was already `/done`'s tier) and
+was not part of what this reconciliation was asked to decide.
+Rejected: **Keep `/done`, retire `clean.md`** — matches the pre-existing local name with less
+churn to `CLAUDE.md` right now, but diverges from the kit's own command name forever, so every
+future re-install re-adds `clean.md` as `Absent` and this repository would delete it again on
+every sync. **Keep both as genuinely separate commands** — rejected outright; they do the same
+job and nothing distinguishes them on purpose.
+Reversibility: cheap — a documentation rename and one file deletion; recoverable from git
+history if the direction should flip.
+
+### 2026-08-30 — `codex/PROFILES.md` installed; supersedes the 2026-08-04 skip
+Context: The 2026-08-04 install skipped `codex/PROFILES.md` for lack of evidence of Codex use.
+The 2026-08-29 sync (`0e1cca0`) subsequently installed `tools/Invoke-CodexCommand.ps1`, whose
+own header comments name `codex/PROFILES.md` as its source of truth for per-profile `model` and
+`model_reasoning_effort` values, and `CLAUDE.md` already carries the full Codex vendor-alias
+table. The file itself was never added.
+Chosen: Install `codex/PROFILES.md` from the kit, unmodified, at the repository root.
+Rejected: **Continue skipping it** — the original default, but the evidence bar `INSTALL.md`
+sets (a profile reference) was already met by `Invoke-CodexCommand.ps1`'s own comments; skipping
+further leaves a script pointing at a file that does not exist.
+Reversibility: cheap — a documentation file with no dependents until a Codex session reads it.
+
+### 2026-08-30 — `CLAUDE.md` reconciled forward to kit commit `5095a55`
+Context: `.claude/commands/*`, `tools/*.ps1` and `.claude/COMPANIONS.md` were brought current by
+`Sync-Kit.ps1` (`d57880d` → `5095a55`, 12 commits), but `CLAUDE.md`'s hand-merged process
+content had not been re-reconciled since the 2026-08-29 sync. Diffing kit `AGENTS.md` across
+that range showed three additions: a `/next` Command routing row (`.claude/commands/next.md` is
+new in this range), the squash-merge force-delete delegation wording folded into the `/clean`
+consolidation above, and a new "Writing a design-state record" section. A fourth change — tier
+resolution from an `AGENTKIT_TIER` environment stamp before falling back to on-disk config — was
+left out: it only matters for a Codex session invoked through `tools/Invoke-CodexCommand.ps1`,
+and is `codex/PROFILES.md`'s and that script's territory to document, not a duplicate copy here.
+Chosen: Add the `/next` row. Add the "Writing a design-state record" section verbatim — it
+self-scopes to "where this repository's own `design/state/` exists," which is not yet true here
+(no `design/state/` directory), so it lands as correct future documentation rather than a
+live-but-inapplicable rule. Left the existing, differently-scoped "Committing and pushing to a
+non-default branch are delegated in this repository" bullet as-is rather than replacing it with
+kit's newer "No work lands directly on the default branch, ever" wording plus its
+`design/state/`-record exception — the target's rule already covers this repository's actual
+practice and the exception has no `design/state/` records to except yet.
+Rejected: **Also install the `design/state/`-record exception's base bullet, replacing the
+target's own** — rejected because the two bullets differ in framing (a delegation grant vs. a
+prohibition-with-exception), the target's was written against this repository's real branching
+practice, and nothing here yet exercises the exception it would add.
+Reversibility: cheap — documentation only; each addition can be reverted independently of the
+others.
+
 ### 2026-08-13 — Reconcile `CLAUDE.md`'s process contract forward to kit commit `6bdd8dc`
 Context: `.claude/commands/*`, `tools/*.ps1`, and `.claude/COMPANIONS.md` had already been
 brought current to kit `HEAD` by `Sync-Kit.ps1` (`.claude/kit.json`'s `syncedCommit` already
