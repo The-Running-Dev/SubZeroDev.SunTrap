@@ -7,6 +7,24 @@ Append-only. Newest at the top. The rejected alternatives are the point — with
 
 ---
 
+### 2026-09-07 — Author the repository delivery brief from existing sources
+Context: `design/00-brief.md` was still the agent-kit placeholder even though the repository
+already had an active implementation programme, game-design documents and a published engine
+dependency. The placeholder said a model could interrogate but not author the brief. The
+requester explicitly overrode that restriction and directed this session to author it from
+the material already present.
+Chosen: Replace the placeholder with a repository-delivery brief whose problem is the gap
+between the documented game and the absence of executable Sun Trap content or clients. Keep
+root `design/` process-facing by pointing to the canonical game and engine documents instead
+of redefining their mechanics, scope or open product decisions.
+Rejected: **Leave the placeholder for a later hand-written brief** — rejected by the
+requester's explicit direction and unnecessary because the existing documents establish the
+delivery problem and boundaries. **Turn root `design/` into a second game-design home** —
+rejected because the 2026-08-04 decision deliberately keeps game-domain design under
+`docs/docs/` and duplicate sources would drift.
+Reversibility: cheap — the repository has no executable implementation depending on this
+brief yet, and both prior text and source material remain in git.
+
 ### 2026-08-30 — `/clean` and `/done` consolidated to `/clean`; `/done` retired
 Context: `/kit-sync` found two housekeeping commands doing the same job. `clean.md` was added
 fresh by the previous sync (`0e1cca0`, kit commit `d57880d`) as the kit's current core. `done.md`
